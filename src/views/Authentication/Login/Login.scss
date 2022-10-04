@@ -1,0 +1,16 @@
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    &__form {
+        width: 50%;
+    }
+}
+
+.error {
+    color: red;
+    font-weight: 900;
+    font-size: 20px;
+}

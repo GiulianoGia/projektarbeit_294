@@ -1,0 +1,42 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__list {
+        list-style-type: none;
+        margin-bottom: 20px;
+    }
+}
+
+.task {
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.status {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 10px;
+    background-color: white;
+
+    .loggedin {
+        color: green;
+    }
+
+    .loggedout {
+        color: red;
+    }
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
