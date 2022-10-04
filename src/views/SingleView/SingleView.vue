@@ -8,6 +8,7 @@
         v-if="update === task.id"
         :id="task.id"
         placeholder="change value"
+        type="text"
       />
       <button @click="changeTask(task)">change</button>
     </div>

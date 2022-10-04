@@ -12,6 +12,7 @@
         <button @click="deleteTask(index, task)">x</button>
         <input
           v-if="update === task.id"
+          type="text"
           :id="task.id"
           placeholder="change value"
         />
