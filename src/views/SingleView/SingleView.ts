@@ -20,6 +20,8 @@ export default defineComponent({
                 .get(`http://localhost:3000/auth/cookie/task/${this.param.id}`)
                 .then((response) => {
                     this.task = response.data;
+                }).catch((error) => {
+                    router.push("/home");
                 });
         } else {
             window.alert("Bitte zuerst einloggen!");
@@ -27,6 +29,11 @@ export default defineComponent({
         }
     },
     methods: {
+        /**
+         * @Info to get a random cookie
+         * @param cName name of the cookie you want to access
+         * @returns the value of the cookie
+         */
         getCookie(cName: string) {
             const name = cName + "=";
             const cDecoded = decodeURIComponent(document.cookie); //to be careful
@@ -37,6 +44,11 @@ export default defineComponent({
             });
             return res;
         },
+        /**
+         * @Info deletes an task 
+         * @param index id of the task
+         * @param task task object
+         */
         deleteTask(index: number, task: TaskI) {
             axios
                 .delete(`http://localhost:3000/auth/cookie/task/${task.id}`)
@@ -50,6 +62,10 @@ export default defineComponent({
                     window.alert("Etwas hat nicht funktioniert!");
                 });
         },
+        /**
+         * @Info sets the completed attribute to true or false
+         * @param task task object
+         */
         completeTask(task: TaskI) {
             task.completed = !task.completed;
             axios
@@ -67,6 +83,10 @@ export default defineComponent({
                     window.alert("Etwas hat nicht funktioniert!");
                 });
         },
+        /**
+         * @Info changes the title of an object
+         * @param task task object
+         */
         changeTask(task: TaskI) {
             if (this.update === task.id) {
                 const input = (<HTMLInputElement>document.getElementById(task.id.toString()))?.value;

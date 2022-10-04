@@ -16,6 +16,9 @@ export default defineComponent({
         };
     },
     methods: {
+        /**
+         * @Info logged in the user with his email and password
+         */
         login() {
             if (this.user.email !== "" && this.validateEmail() && this.user.password !== "") {
                 axios.post("http://localhost:3000/auth/cookie/login", {
@@ -39,6 +42,10 @@ export default defineComponent({
                 }
             }
         },
+        /**
+         * @Info validates the email address
+         * @returns true or false (if the email is like the pattern)
+         */
         validateEmail() {
             return String(this.user.email)
                 .toLowerCase()
@@ -46,6 +53,9 @@ export default defineComponent({
                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                 );
         },
+        /**
+         * sets all input fields empty
+         */
         reset() {
             this.user.email = "";
             this.user.password = "";

@@ -18,6 +18,11 @@ export default defineComponent({
         }
     },
     methods: {
+        /**
+         * @Info deletes an task 
+         * @param index id of the task
+         * @param task task object
+         */
         deleteTask(index: number, task: TaskI) {
             axios.delete(`http://localhost:3000/auth/cookie/task/${task.id}`).then((response) => {
                 this.getAllTask();
@@ -28,6 +33,10 @@ export default defineComponent({
                 window.alert("Etwas hat nicht funktioniert!");
             });
         },
+        /**
+         * @Info sets the completed attribute to true or false
+         * @param task task object
+         */
         completeTask(task: TaskI) {
             task.completed = !task.completed
             axios.put('http://localhost:3000/auth/cookie/tasks', { id: task.id, completed: task.completed, title: task.title }).then((response) => {
@@ -38,6 +47,9 @@ export default defineComponent({
                 window.alert("Etwas hat nicht funktioniert!");
             });
         },
+        /**
+         * @Info creates a new task (completed is always false in default)
+         */
         createTask() {
             if (this.title !== '') {
                 axios.post('http://localhost:3000/auth/cookie/tasks', { completed: false, title: this.title }).then((response) => {
@@ -51,6 +63,10 @@ export default defineComponent({
                 window.alert("Please fill in all the forms!");
             }
         },
+        /**
+         * @Info changes the title of an object
+         * @param task task object
+         */
         changeTask(task: TaskI) {
             if (this.update === task.id) {
                 const input = (<HTMLInputElement>document.getElementById(task.id.toString()))?.value;
@@ -72,6 +88,9 @@ export default defineComponent({
             }
 
         },
+        /**
+         * @Info Gets all task from the backend (reactive)
+         */
         getAllTask() {
             axios.get("http://localhost:3000/auth/cookie/tasks").then((reponse) => {
                 if (reponse.status === 200) {
@@ -81,6 +100,11 @@ export default defineComponent({
                 window.alert("Etwas hat nicht funktioniert!");
             });
         },
+        /**
+         * @Info to get a random cookie
+         * @param cName name of the cookie you want to access
+         * @returns the value of the cookie
+         */
         getCookie(cName: string) {
             const name = cName + "=";
             const cDecoded = decodeURIComponent(document.cookie); //to be careful
@@ -91,6 +115,9 @@ export default defineComponent({
             })
             return res
         },
+        /**
+         * @Info logout the user
+         */
         logout() {
             axios.post('http://localhost:3000/auth/cookie/logout').then((response) => {
                 document.cookie = "login=false";
