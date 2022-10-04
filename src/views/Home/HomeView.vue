@@ -20,7 +20,7 @@
       </div>
     </div>
     <form>
-      <input v-model="title" type="text" name="title" placeholder="title" />
+      <input v-model="title" id="title" type="text" name="title" placeholder="title" />
       <button @click="createTask()">createTask</button>
     </form>
     <div class="status" v-if="loggedIn">

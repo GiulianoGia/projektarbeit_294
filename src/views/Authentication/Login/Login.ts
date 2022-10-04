@@ -54,7 +54,7 @@ export default defineComponent({
                 );
         },
         /**
-         * sets all input fields empty
+         * @Info sets all input fields empty
          */
         reset() {
             this.user.email = "";
